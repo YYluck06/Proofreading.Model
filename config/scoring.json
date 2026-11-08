@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "neutral_coefficient": 0.3,
+  "thresholds": {
+    "green_max": 0.0,
+    "blue_max": 9.0,
+    "yellow_max": 15.0
+  },
+  "protection_cap": {
+    "any_hard_flag": 0.3,
+    "core_risk_at_or_above_threshold": 0.5,
+    "core_risk_threshold": 4.0,
+    "default": 0.8
+  },
+  "coverage_floor": 0.6,
+  "core_items": [
+    "a1",
+    "a2",
+    "a3_1",
+    "a3_2",
+    "b1_1",
+    "b1_2",
+    "c1",
+    "c2",
+    "d1",
+    "d2",
+    "e1a",
+    "e1b",
+    "e2"
+  ],
+  "alerts": {
+    "insufficient": {
+      "label": "Insufficient data",
+      "headline": "Too few items are answered to produce a banded result.",
+      "actions": [
+        "Complete at least the core family, individual, school and online items before scoring.",
+        "Treat the case as unassessed: do not defer a safeguarding decision because the score looks low."
+      ]
+    },
+    "green": {
+      "label": "Stable",
+      "headline": "No elevated risk signal. Continue routine support.",
+      "actions": [
+        "Keep the current support arrangement and re-screen at the next scheduled cycle.",
+        "Record protective factors that are working (guardian involvement, school engagement, emotional support)."
+      ]
+    },
+    "blue": {
+      "label": "Monitor",
+      "headline": "Low-level risk signal. Watch the trend, do not escalate yet.",
+      "actions": [
+        "Re-screen within 4 weeks and compare the net risk score trend.",
+        "Share the protective-factor summary with guardians or the class teacher, with consent.",
+        "Target the highest-scoring domain only; avoid launching parallel interventions."
+      ]
+    },
+    "yellow": {
+      "label": "Elevated",
+      "headline": "Elevated risk signal. A named case worker should review the profile.",
+      "actions": [
+        "Assign a case worker and confirm the facts behind the top three contributions with the guardian and school.",
+        "Start a structured support plan with an explicit review date (within 2 weeks).",
+        "Check whether any hard-flag item is present and document the follow-up for each one.",
+        "Re-screen within 2 weeks and record changes in the audit log."
+      ]
+    },
+    "red": {
+      "label": "Urgent",
+      "headline": "High risk signal. Escalate for human review the same working day.",
+      "actions": [
+        "Escalate to the designated safeguarding lead the same working day; do not rely on the score alone.",
+        "Verify hard-flag findings directly with the guardian, school, or relevant agency.",
+        "Activate the local multi-agency referral pathway if any hard flag is confirmed.",
+        "Increase review frequency to weekly until the net risk score falls below the elevated band.",
+        "Log every decision, its author, and its rationale in the audit trail."
+      ]
+    }
+  },
+  "disclaimer": "This instrument is a decision-support aid. It does not produce a legal, clinical, or safeguarding determination, and no action may be taken on a score alone. Every alert must be reviewed by a qualified professional together with the underlying evidence."
+}

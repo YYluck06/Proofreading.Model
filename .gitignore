@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# Dashboard / engine local data
+data/
+*.pkl
+*.joblib
+.streamlit/secrets.toml
+
+# Worker
+node_modules/
+apps/worker/dist/
+apps/worker/.wrangler/
+apps/worker/.dev.vars
+.wrangler/
+
+# Local configuration overrides
+.env
+.env.*
+!.env.example
+
+# Case data must never be committed. Exports land here by default.
+exports/
+cases/
+
+# Editors and OS noise
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+*.log
