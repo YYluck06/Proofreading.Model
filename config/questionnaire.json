@@ -1,0 +1,286 @@
+{
+  "version": "2.0.0",
+  "title": "Youth Risk & Protection Screening Questionnaire",
+  "description": "Structured screening instrument covering family, individual, social, school, online, emotional and self-management domains. Every item contributes evidence to three independent channels: risk, neutral, and protection.",
+  "scale": { "min": 0, "max": 5 },
+  "sections": [
+    {
+      "id": "A",
+      "title": "Family & guardianship",
+      "description": "Caregiver presence, parenting style and family functioning.",
+      "items": [
+        {
+          "key": "a1",
+          "title": "Guardianship status",
+          "type": "multi",
+          "max_risk": 6,
+          "weights": { "risk": 1.1, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "guardian_engaged", "label": "Guardian actively involved (protective)", "risk": 0, "neutral": 2, "protection": 5 },
+            { "id": "single_parent", "label": "Single-parent household", "risk": 2, "neutral": 3, "protection": 0 },
+            { "id": "parental_unemployment", "label": "Parent(s) unemployed", "risk": 2, "neutral": 2, "protection": 0 },
+            { "id": "weak_supervision", "label": "Weak supervision", "risk": 2, "neutral": 1, "protection": 0 },
+            { "id": "chronic_illness", "label": "Chronic illness in the household", "risk": 3, "neutral": 1, "protection": 0 },
+            { "id": "migrant_family", "label": "Migrant family (frequent relocation)", "risk": 3, "neutral": 2, "protection": 0 },
+            { "id": "left_behind", "label": "Left-behind child", "risk": 3, "neutral": 1, "protection": 0 },
+            { "id": "parents_absent", "label": "Parents away for most of the year", "risk": 3, "neutral": 0, "protection": 0 },
+            { "id": "parents_unreachable", "label": "Parents out of contact", "risk": 3, "neutral": 0, "protection": 0 },
+            { "id": "no_caregiver", "label": "De facto no caregiver", "risk": 5, "neutral": 0, "protection": 0, "hard_trigger": true }
+          ]
+        },
+        {
+          "key": "a2",
+          "title": "Parenting style",
+          "type": "mcq",
+          "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "authoritative", "label": "Authoritative (balanced, reasoned)", "risk": 0, "neutral": 3, "protection": 4 },
+            { "id": "traditional", "label": "Traditional (rule-focused)", "risk": 1, "neutral": 4, "protection": 2 },
+            { "id": "permissive", "label": "Permissive / indulgent", "risk": 3, "neutral": 1, "protection": 0 },
+            { "id": "neglectful", "label": "Neglectful", "risk": 3, "neutral": 0, "protection": 0 },
+            { "id": "violent", "label": "Violent / abusive", "risk": 5, "neutral": 0, "protection": 0, "hard_trigger": true }
+          ]
+        },
+        {
+          "key": "a3",
+          "title": "Family functioning",
+          "type": "group",
+          "subquestions": [
+            {
+              "key": "a3_1",
+              "title": "Family communication",
+              "type": "scale",
+              "weights": { "risk": 0.7, "neutral": 1.0, "protection": 1.0 },
+              "scale": { "label": "Difficulty communicating (0 = open, 5 = severely impaired)", "map_to": "risk" }
+            },
+            {
+              "key": "a3_2",
+              "title": "Family conflict",
+              "type": "scale",
+              "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+              "scale": { "label": "Conflict intensity (0 = calm, 5 = violent conflict)", "map_to": "risk" }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Individual cognition & psychology",
+      "description": "Temperament, aggression, belief system and self-identity.",
+      "items": [
+        {
+          "key": "b1",
+          "title": "Personality & behaviour",
+          "type": "group",
+          "subquestions": [
+            {
+              "key": "b1_1",
+              "title": "Impulse control",
+              "type": "scale",
+              "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+              "scale": { "label": "Impulsivity (0 = composed, 5 = easily loses control)", "map_to": "risk" }
+            },
+            {
+              "key": "b1_2",
+              "title": "Aggressive tendencies",
+              "type": "scale",
+              "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+              "scale": { "label": "Aggressive behaviour frequency (0 = none, 5 = frequent)", "map_to": "risk", "hard_threshold": 4 }
+            }
+          ]
+        },
+        {
+          "key": "b2",
+          "title": "Belief system (extreme / defeatist views)",
+          "type": "hybrid",
+          "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "positive_values", "label": "Constructive values", "risk": 0, "neutral": 0, "protection": 5 },
+            { "id": "peer_influenced", "label": "Values shaped by peers", "risk": 1, "neutral": 3, "protection": 1, "activates_scale": true },
+            { "id": "unclear_values", "label": "Diffuse / unclear values", "risk": 1, "neutral": 2, "protection": 1, "activates_scale": true },
+            { "id": "occasional_extreme", "label": "Occasional extreme views", "risk": 3, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "extreme_views", "label": "Firmly extreme views", "risk": 4, "neutral": 0, "protection": 0, "activates_scale": true }
+          ],
+          "scale": { "label": "Extremity of views (0 = none, 5 = extreme)", "map_to": "risk", "hard_threshold": 5 }
+        },
+        {
+          "key": "b3",
+          "title": "Self-identity",
+          "type": "scale",
+          "weights": { "risk": 0.9, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Identity confusion (0 = confident, 5 = confused / self-rejecting)", "map_to": "risk" }
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Social environment",
+      "description": "Peer group and community context.",
+      "items": [
+        {
+          "key": "c1",
+          "title": "Peer relationships",
+          "type": "hybrid",
+          "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "no_delinquent_peers", "label": "No delinquent peers", "risk": 0, "neutral": 5, "protection": 5 },
+            { "id": "occasional_delinquent_peers", "label": "Occasional contact with delinquent peers", "risk": 2, "neutral": 1, "protection": 1, "activates_scale": true },
+            { "id": "delinquent_peers", "label": "Regular delinquent peer group", "risk": 3, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "delinquent_gang", "label": "Member of an antisocial group", "risk": 4, "neutral": 0, "protection": 0, "activates_scale": true }
+          ],
+          "scale": { "label": "Peer influence intensity (0 = none, 5 = very strong)", "map_to": "risk", "hard_threshold": 4 }
+        },
+        {
+          "key": "c2",
+          "title": "Community environment",
+          "type": "hybrid",
+          "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "supportive_community", "label": "Well-resourced, safe community", "risk": 0, "neutral": 3, "protection": 4 },
+            { "id": "average_community", "label": "Average community", "risk": 1, "neutral": 2, "protection": 2, "activates_scale": true },
+            { "id": "resource_poor_community", "label": "Resource-poor community", "risk": 3, "neutral": 1, "protection": 1, "activates_scale": true },
+            { "id": "unsafe_community", "label": "Poor public safety", "risk": 4, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "high_crime_community", "label": "Frequent community crime", "risk": 5, "neutral": 1, "protection": 0, "hard_trigger": true, "activates_scale": true },
+            { "id": "high_risk_community", "label": "Known high-risk community", "risk": 5, "neutral": 0, "protection": 0, "hard_trigger": true, "activates_scale": true }
+          ],
+          "scale": { "label": "Community influence intensity (0 = none, 5 = very strong)", "map_to": "risk", "hard_threshold": 4 }
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "School & education",
+      "description": "Attendance, engagement and legal-awareness education.",
+      "items": [
+        {
+          "key": "d1",
+          "title": "School engagement",
+          "type": "hybrid_multi",
+          "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "engaged_learner", "label": "Actively engaged in learning", "risk": 0, "neutral": 4, "protection": 4 },
+            { "id": "occasional_absence", "label": "Occasional absence", "risk": 1, "neutral": 3, "protection": 0 },
+            { "id": "occasional_truancy", "label": "Occasional truancy", "risk": 2, "neutral": 2, "protection": 0 },
+            { "id": "chronic_absence", "label": "Chronic absence", "risk": 3, "neutral": 2, "protection": 0, "activates_scale": true },
+            { "id": "frequent_truancy", "label": "Frequent truancy", "risk": 3, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "dropout", "label": "Dropped out of school", "risk": 4, "neutral": 0, "protection": 0, "activates_scale": true }
+          ],
+          "scale": { "label": "Truancy frequency and persistence (0 = none, 5 = very frequent / ongoing)", "map_to": "risk", "hard_threshold": 4 }
+        },
+        {
+          "key": "d2",
+          "title": "Legal-awareness education",
+          "type": "hybrid",
+          "weights": { "risk": 0.9, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "active_participation", "label": "Deeply involved in legal-awareness activities", "risk": 0, "neutral": 3, "protection": 5, "activates_scale": true },
+            { "id": "scheduled_lessons", "label": "Scheduled lessons delivered", "risk": 1, "neutral": 2, "protection": 2, "activates_scale": true },
+            { "id": "occasional_outreach", "label": "Occasional awareness campaigns only", "risk": 2, "neutral": 1, "protection": 1, "activates_scale": true },
+            { "id": "no_legal_education", "label": "No legal-awareness education", "risk": 3, "neutral": 1, "protection": 0 }
+          ],
+          "scale": { "label": "Effect of legal-awareness education (0 = none, 5 = good)", "map_to": "protection" }
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Online behaviour",
+      "description": "Screen time, late-night use, harmful content exposure and online interaction.",
+      "items": [
+        {
+          "key": "e1a",
+          "title": "Screen time interfering with daily life",
+          "type": "scale",
+          "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Interference with daily life (0 = none, 5 = severely disrupted)", "map_to": "risk" }
+        },
+        {
+          "key": "e1b",
+          "title": "Late-night internet use",
+          "type": "scale",
+          "weights": { "risk": 0.9, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Late-night use frequency (0 = none, 5 = all night)", "map_to": "risk" }
+        },
+        {
+          "key": "e2",
+          "title": "Harmful content exposure",
+          "type": "hybrid_multi",
+          "weights": { "risk": 1.1, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "positive_content", "label": "Mostly positive / educational content", "risk": 0, "neutral": 3, "protection": 5 },
+            { "id": "game_content", "label": "Gaming content", "risk": 1, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "sexual_content", "label": "Sexual content", "risk": 2, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "fraud_content", "label": "Fraud / scam material", "risk": 3, "neutral": 0, "protection": 0, "hard_trigger": true, "activates_scale": true },
+            { "id": "violent_content", "label": "Violent / graphic content", "risk": 4, "neutral": 0, "protection": 0, "hard_trigger": true, "activates_scale": true },
+            { "id": "illicit_market_content", "label": "Illicit-market / underground-economy material", "risk": 5, "neutral": 0, "protection": 0, "hard_trigger": true, "activates_scale": true }
+          ],
+          "scale": { "label": "Exposure frequency / immersion (0 = none, 5 = frequent)", "map_to": "risk", "hard_threshold": 5 }
+        },
+        {
+          "key": "e3",
+          "title": "Online social behaviour",
+          "type": "multi",
+          "weights": { "risk": 1.0, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "healthy_online", "label": "Healthy online relationships", "risk": 0, "neutral": 3, "protection": 5 },
+            { "id": "cyberbullied", "label": "Victim of cyberbullying", "risk": 2, "neutral": 2, "protection": 0, "activates_scale": true },
+            { "id": "risky_online_circle", "label": "Involved in risky online circles", "risk": 3, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "cyberbullying_offender", "label": "Participates in or initiates cyberbullying", "risk": 5, "neutral": 0, "protection": 0, "hard_trigger": true }
+          ],
+          "scale": { "label": "Impact intensity (0 = none, 5 = very strong)", "map_to": "risk", "hard_threshold": 4 }
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Emotional development",
+      "description": "Support received and capacity to regulate emotion.",
+      "items": [
+        {
+          "key": "f1",
+          "title": "Emotional support",
+          "type": "scale",
+          "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Care and support received (0 = poor, 5 = strong)", "map_to": "protection" }
+        },
+        {
+          "key": "f2",
+          "title": "Emotion regulation",
+          "type": "scale",
+          "weights": { "risk": 0.9, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Difficulty regulating emotion (0 = good, 5 = severe)", "map_to": "risk" }
+        }
+      ]
+    },
+    {
+      "id": "G",
+      "title": "Self-management",
+      "description": "Time and money management.",
+      "items": [
+        {
+          "key": "g1",
+          "title": "Time management & self-discipline",
+          "type": "scale",
+          "weights": { "risk": 0.8, "neutral": 1.0, "protection": 1.0 },
+          "scale": { "label": "Time-management problems (0 = disciplined, 5 = chaotic)", "map_to": "risk" }
+        },
+        {
+          "key": "g2",
+          "title": "Financial management",
+          "type": "hybrid",
+          "weights": { "risk": 0.7, "neutral": 1.0, "protection": 1.0 },
+          "options": [
+            { "id": "good_financial_skills", "label": "Good money management", "risk": 0, "neutral": 3, "protection": 5 },
+            { "id": "no_debt", "label": "No debt", "risk": 0, "neutral": 4, "protection": 2 },
+            { "id": "impulse_spending", "label": "Occasional impulse spending", "risk": 1, "neutral": 2, "protection": 1, "activates_scale": true },
+            { "id": "scam_victim", "label": "Victim of a financial scam", "risk": 3, "neutral": 1, "protection": 0, "activates_scale": true },
+            { "id": "in_debt", "label": "Currently in debt", "risk": 3, "neutral": 2, "protection": 0, "activates_scale": true },
+            { "id": "severe_debt", "label": "Severe debt / predatory loan", "risk": 4, "neutral": 0, "protection": 0, "activates_scale": true }
+          ],
+          "scale": { "label": "Problematic money attitudes / behaviour (0 = good, 5 = severe)", "map_to": "risk", "hard_threshold": 4 }
+        }
+      ]
+    }
+  ]
+}

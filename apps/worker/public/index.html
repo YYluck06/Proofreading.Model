@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Youth Risk &amp; Protection Screening</title>
+    <meta
+      name="description"
+      content="Structured, rule-based screening for youth risk and protective factors. Decision support only, never a substitute for professional assessment."
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script type="module" src="/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand__mark" aria-hidden="true">◈</span>
+        <div>
+          <h1>Youth Risk &amp; Protection Screening</h1>
+          <p class="subtitle">Transparent scoring, reproducible evaluation IDs, human review required</p>
+        </div>
+      </div>
+      <p class="version" id="version-badge">engine loading…</p>
+    </header>
+
+    <main id="main">
+      <section class="panel" aria-labelledby="intro-heading">
+        <h2 id="intro-heading">How this works</h2>
+        <p>
+          Every item feeds three independent channels: <strong>risk</strong> (factors that raise concern),
+          <strong>neutral</strong> (context that neither raises nor lowers concern, counted at
+          <span id="neutral-coefficient">0.3</span>&times;), and <strong>protection</strong> (factors that
+          mitigate risk). Protection is capped, never unbounded.
+        </p>
+        <ul class="legend-list">
+          <li>Scale answers marked <em>Not assessed</em> are excluded; unanswered items lower coverage.</li>
+          <li>Hard flags force a lower protection cap and are listed explicitly in the result.</li>
+          <li>The net score drives a four-band alert plus an explicit <em>insufficient data</em> band.</li>
+        </ul>
+        <p class="hint" id="disclaimer">
+          This tool produces a structured summary of screening evidence. It is decision support only and
+          must not be used as the sole basis for any decision about a young person.
+        </p>
+        <div class="toolbar">
+          <button type="button" id="load-demo">Load example case</button>
+          <button type="button" id="reset-form">Clear all answers</button>
+          <span class="progress" id="progress" role="status" aria-live="polite">0 of 0 items answered</span>
+        </div>
+      </section>
+
+      <form id="assessment" novalidate>
+        <div id="sections"></div>
+        <div class="toolbar toolbar--sticky">
+          <button type="submit" id="evaluate" class="primary">Evaluate case</button>
+          <p class="hint">Answers stay in this browser until you press Evaluate.</p>
+        </div>
+      </form>
+
+      <section class="panel" id="result" aria-labelledby="result-heading" hidden>
+        <h2 id="result-heading" tabindex="-1">Evaluation result</h2>
+        <div id="result-body"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Open source reference implementation. Questionnaire and calibration data live in
+        <code>config/</code>; the same configuration drives the Python engine and this Worker.
+        See the repository <code>docs/methodology.md</code> for the scoring model.
+      </p>
+    </footer>
+  </body>
+</html>
