@@ -57,7 +57,7 @@ jobs:
         working-directory: apps/worker
         run: npm run build
       - name: Cross-language parity tests
-        run: node --test tests/node/engine.test.mjs tests/node/api.test.mjs
+        run: node --test tests/node/engine.test.mjs tests/node/api.test.mjs tests/node/ui.test.mjs
 
   dashboard:
     name: Dashboard imports and bootstraps
