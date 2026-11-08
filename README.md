@@ -169,6 +169,9 @@ no dangling element references, no `innerHTML` with case data, CSP present.
   (runs as an unprivileged user, health-checked, see [docs/deployment.md](docs/deployment.md)).
 - **Worker**: `cd apps/worker && npm run deploy` after setting `ALLOWED_ORIGINS` in `wrangler.toml`.
   The API is stateless by design; nothing about a case is stored or logged.
+- **Single host**: [deploy/](deploy/) has a `docker-compose.yml` (dashboard on loopback,
+  read-only root filesystem, health check), a `Caddyfile` for HTTPS on a demo and a documentation
+  subdomain, and notes on what must never be placed on a public demo server.
 
 ---
 

@@ -1,0 +1,56 @@
+# Reverse proxy configuration for the public demo and the documentation site.
+#
+# Replace the two hostnames with subdomains of your own domain, then:
+#   caddy reload --config /etc/caddy/Caddyfile
+#
+# Caddy obtains and renews the certificates automatically. Nothing here terminates on
+# plain HTTP except the redirect.
+
+{
+	email admin@example.org
+	# Uncomment the staging CA while testing to avoid rate limits:
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# Public demo of the dashboard.
+demo.example.org {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "no-referrer"
+		Permissions-Policy "geolocation=(), microphone=(), camera=()"
+		Cross-Origin-Opener-Policy "same-origin"
+		-Server
+	}
+
+	# Streamlit needs websockets for its runtime.
+	reverse_proxy 127.0.0.1:8501 {
+		header_up X-Forwarded-Proto {scheme}
+	}
+
+	log {
+		output file /var/log/caddy/demo.log {
+			roll_size 10mb
+			roll_keep 5
+		}
+		# Access logs contain IP addresses: keep the retention short.
+		format console
+	}
+}
+
+# Documentation: static files generated from docs/ (or any static site generator).
+docs.example.org {
+	root * /srv/proofreading-docs
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+	}
+	file_server {
+		hide .git
+	}
+}
